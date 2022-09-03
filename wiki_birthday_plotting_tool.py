@@ -38,8 +38,7 @@ cal3 =[i[0:3] for i in cal]
 #gets dictionariy of all links on a given wiki page,
 #in this case "list of famous kpop artists"
 wiki_wiki = wikipediaapi.Wikipedia('en')
-page_k = wiki_wiki.page('List_of_K-pop_artists')
-links = page_k.links
+links = wiki_wiki.page('List_of_K-pop_artists').links
 
 #write all urls to a file seperated by newlies,
 #check if file has content first
