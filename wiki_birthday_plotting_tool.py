@@ -4,6 +4,7 @@ from collections import Counter
 import wikipediaapi
 from bs4 import BeautifulSoup
 import requests
+import sys
 
 def get_html(x):
     #get html from url
@@ -48,8 +49,8 @@ with open("kpop_urls.txt", "r") as r:
         with open("kpop_urls.txt", "w") as f:
             i=1
             #sliced list to exclude non-kpop artist links
-            for title in (list(links.keys())[5:-15]):
-                f.write(str(wiki_wiki.page(title).fullurl)+"\n")
+            for title in (list(links.values())[5:-15]):
+                f.write(str(title.fullurl)+"\n")
                 print("birthday {x} written to file".format(x=i))
                 i+=1
     else:
