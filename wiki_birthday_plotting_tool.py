@@ -18,6 +18,19 @@ def get_bday(html_text):
     y = soup.find(class_ = "bday").string
     return y
 
+def file_already_written(file_type):
+    print("{x} file already contains data".format(x=file_type))
+
+def written(file_type):
+    print("{x} file writing completed".format(x=file_type))
+
+#gets dictionariy of all links on a given wiki page,
+#in this case "list of famous kpop artists"
+wiki_wiki = wikipediaapi.Wikipedia('en')
+links = wiki_wiki.page('List_of_K-pop_artists').links
+
+
+
 cal =  ["January",
         "February",
         "March",
@@ -36,11 +49,6 @@ cal3 =[i[0:3] for i in cal]
 
 #-------------------------get urls, write to file------------------------
 
-#gets dictionariy of all links on a given wiki page,
-#in this case "list of famous kpop artists"
-wiki_wiki = wikipediaapi.Wikipedia('en')
-links = wiki_wiki.page('List_of_K-pop_artists').links
-
 #write all urls to a file seperated by newlies,
 #check if file has content first
 with open("kpop_urls.txt", "r") as r:
@@ -54,8 +62,8 @@ with open("kpop_urls.txt", "r") as r:
                 print("birthday {x} written to file".format(x=i))
                 i+=1
     else:
-        print("URLS file already contains data")
-print("URL writning completed.")
+        file_already_written("urls")
+written("urls")
 
 #------------------------get bdays, write to file-------------------------
 
@@ -78,8 +86,8 @@ with open("kpop_urls.txt", "r") as links:
                     except:
                         print("Error: No Birthday found")
         else:
-            print("birthdays file already contains data.")
-print("Birthday writing completed.")
+            file_already_written("birthdays")
+written("birthdays")
 
 ## ----------------------------- Plotting ------------------------------------
 
