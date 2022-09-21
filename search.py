@@ -1,13 +1,11 @@
 import json
 
-with open("twice_info.json", "r") as f:
-    members = json.load(f)
-    members2 = members
-
-
-print("This dictionary contains the birthdays of:")
-for i in list(members.keys()):
-    print(i)
+def stratup_msg():
+    #NOTE: dont use this for large numbers of profiles!
+    with open 
+        print("This dictionary contains the birthdays of:")
+        for i in f:
+            print(i)
     
 while True:
     action = input("would you like to view or add entries? ")
