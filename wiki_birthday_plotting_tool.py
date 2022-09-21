@@ -4,7 +4,7 @@ from collections import Counter
 import wikipediaapi
 from bs4 import BeautifulSoup
 import requests
-import sys
+
 
 def get_html(x):
     #get html from url
@@ -24,12 +24,10 @@ def file_already_written(file_type):
 def written(file_type):
     print("{x} file writing completed".format(x=file_type))
 
-#gets dictionariy of all links on a given wiki page,
+#gets dictionary of all links on a given wiki page,
 #in this case "list of famous kpop artists"
 wiki_wiki = wikipediaapi.Wikipedia('en')
 links = wiki_wiki.page('List_of_K-pop_artists').links
-
-
 
 cal =  ["January",
         "February",
@@ -51,10 +49,10 @@ cal3 =[i[0:3] for i in cal]
 
 #write all urls to a file seperated by newlies,
 #check if file has content first
-with open("kpop_urls.txt", "r") as r:
+with open("data/kpop_urls.txt", "r") as r:
     lns_a = len(r.readlines())
     if lns_a ==0:
-        with open("kpop_urls.txt", "w") as f:
+        with open("data/kpop_urls.txt", "w") as f:
             i=1
             #sliced list to exclude non-kpop artist links
             for title in (list(links.values())[5:-15]):
@@ -70,11 +68,11 @@ written("urls")
 
 #from file containing urls, get birthday of each person and write to new file,
 #checking if file has content first
-with open("kpop_urls.txt", "r") as links:
-    with open("kpop_birthdays", "r") as bdays:
+with open("data/kpop_urls.txt", "r") as links:
+    with open("data/kpop_birthdays.txt", "r") as bdays:
         lns_b = len(bdays.readlines())
         if lns_b == 0:
-            with open("kpop_birthdays","w") as bdays:
+            with open("data/kpop_birthdays.txt","w") as bdays:
                 i=1
                 for link in links:
                     try:
@@ -91,7 +89,7 @@ written("birthdays")
 
 ## ----------------------------- Plotting ------------------------------------
 
-with open("kpop_birthdays", "r") as f:
+with open("data/kpop_birthdays.txt", "r") as f:
     #list of months of birth of kpop idols
     months = [int(date.strip().split("-")[1]) for date in f if len(date.strip()) ==10]
 
